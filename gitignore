@@ -1,0 +1,4 @@
+node_modules/
+.env
+feedback.jsonl
+jeremyai.zip

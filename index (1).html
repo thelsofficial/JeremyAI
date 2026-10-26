@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JeremyAI (Beta)</title>
+  <meta name="description" content="JeremyAI — your AI assistant. Public beta." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="beta-banner" id="betaBanner" role="status">
+    <span><strong>Beta:</strong> JeremyAI is still in testing. Answers may be wrong, features may change, and conversations are stored only in this browser.</span>
+    <button class="icon-btn" id="dismissBanner" aria-label="Dismiss beta notice">✕</button>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="favicon.svg" alt="" width="28" height="28" />
+        <span class="brand-name">JeremyAI</span>
+        <span class="badge">BETA</span>
+      </div>
+      <button class="new-chat" id="newChat">＋ New chat</button>
+      <nav class="chat-list" id="chatList" aria-label="Conversations"></nav>
+      <div class="sidebar-footer">
+        <button class="link-btn" id="settingsBtn" hidden>⚙️ Settings (API key)</button>
+        <button class="link-btn" id="feedbackBtn">💬 Send beta feedback</button>
+        <button class="link-btn" id="themeBtn">🌓 Toggle theme</button>
+        <div class="version" id="version"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open conversations">☰</button>
+        <h1 class="chat-title" id="chatTitle">New chat</h1>
+        <span class="mode-pill" id="modePill" hidden>Demo mode</span>
+      </header>
+
+      <section class="messages" id="messages" aria-live="polite">
+        <div class="welcome" id="welcome">
+          <img src="favicon.svg" alt="" width="64" height="64" />
+          <h2>Hi, I'm JeremyAI</h2>
+          <p>Ask me anything — writing, coding, ideas, explanations.</p>
+          <div class="suggestions">
+            <button class="suggestion">Explain quantum computing like I'm 12</button>
+            <button class="suggestion">Write a Python function to dedupe a list</button>
+            <button class="suggestion">Give me 5 name ideas for a coffee shop</button>
+            <button class="suggestion">Help me plan a 3-day trip to Tokyo</button>
+          </div>
+        </div>
+      </section>
+
+      <form class="composer" id="composer">
+        <textarea id="input" rows="1" placeholder="Message JeremyAI…" aria-label="Message"></textarea>
+        <button type="submit" class="send-btn" id="sendBtn" aria-label="Send">➤</button>
+        <button type="button" class="send-btn stop" id="stopBtn" aria-label="Stop generating" hidden>■</button>
+      </form>
+      <p class="disclaimer">JeremyAI is in beta and can make mistakes. Check important info.</p>
+    </main>
+  </div>
+
+  <dialog id="feedbackDialog">
+    <form method="dialog" id="feedbackForm">
+      <h3>Beta feedback</h3>
+      <p>Found a bug or have an idea? Tell us.</p>
+      <textarea id="feedbackText" rows="5" maxlength="2000" required placeholder="What happened? What would make JeremyAI better?"></textarea>
+      <div class="dialog-actions">
+        <button value="cancel" formnovalidate class="secondary">Cancel</button>
+        <button value="submit" class="primary">Send</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog">
+    <form method="dialog">
+      <h3>Settings</h3>
+      <p>
+        To get real answers, paste your Anthropic API key. You can create one at
+        <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer">console.anthropic.com</a>.
+      </p>
+      <label for="apiKeyInput" class="field-label">Anthropic API key</label>
+      <input id="apiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-..." />
+      <p class="hint">
+        🔒 The key is saved only in this browser on this device and is sent only to Anthropic.
+        Don't type it on a shared or school computer you don't trust. Leave it blank to use demo mode.
+      </p>
+      <button type="button" class="link-btn" id="downloadFeedback">⬇️ Download saved feedback</button>
+      <div class="dialog-actions">
+        <button value="cancel" formnovalidate class="secondary">Cancel</button>
+        <button value="save" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" hidden></div>
+  <script src="markdown.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
